@@ -12,11 +12,10 @@ def turndown():
 	subprocess.call(["shutdown", "-h", "now"])
 
 while True:
-	if ( GPIO.input(23) == False ):
-		print ("playing!")
-		p = sp.Popen(["ogg123","deathly.ogg"], stdout=sp.PIPE)	
-  		#print ("end sound " + p.communicate()[0])
+	print ("playing!")
+	p = sp.Popen(["mpg321","bubbling_water_1.mp3"], stdout=sp.PIPE)	
+	print ("end sound " + p.communicate()[0])
                 
-	#else:
-	print(".")
-	time.sleep(0.5);
+	for i in range(5):
+		print(i)
+		time.sleep(1);
