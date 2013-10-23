@@ -37,10 +37,10 @@ def turndown():
 while True:
 	print ("playing!")
 	p = sp.Popen(["ogg123","deathly.ogg"], stdout=sp.PIPE)	
-    print("spining")
-    spin(8);
+	print("spining")
+	spin(8);
 
-    l = random.randint(3, 7)
+	l = random.randint(3, 7)
 	time.sleep(l);
 
 	if ( GPIO.input(23) == False ):
