@@ -22,11 +22,16 @@ GPIO.setup(step_pin, GPIO.OUT)
 GPIO.output(dir_pin, 0)
 
 def spin(t):
-	for r in range(0,t):
-		for i in range(0, 200*8):
-			GPIO.output(step_pin, 0)
-			GPIO.output(step_pin, 1)
-			time.sleep(0.005)
+	aspeed = 1.0/30.0 #2 rpm
+	stepssecond = aspeed*200.0*8.0 #1.8deg stepper; 1/8th microstepping
+	d = 1.0/stepssecond
+	print(d)
+	s = int(t/d)
+	print(s)
+	for r in range(0,s):
+		GPIO.output(step_pin, 0)
+		GPIO.output(step_pin, 1)
+		time.sleep(d)
 
 def turndown():
 	sp.call("sync")
@@ -43,5 +48,5 @@ while True:
 	l = random.randint(3, 7)
 	time.sleep(l);
 
-	if ( GPIO.input(23) == False ):
+	if ( GPIO.input(down_pin) == False ):
 		turndown()

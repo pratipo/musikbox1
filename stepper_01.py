@@ -7,15 +7,15 @@ import RPi.GPIO as GPIO
  
 GPIO.setmode(GPIO.BCM)
 
-enable_pin = 23
-dir_pin = 24
-step_pin = 25
+#enable_pin = 25
+dir_pin = 23
+step_pin = 24
 
-GPIO.setup(enable_pin, GPIO.OUT)
+#GPIO.setup(enable_pin, GPIO.OUT)
 GPIO.setup(dir_pin, GPIO.OUT)
 GPIO.setup(step_pin, GPIO.OUT)
 
-GPIO.output(enable_pin, 1)
+#GPIO.output(enable_pin, 1)
 GPIO.output(dir_pin, 0)
 
 def shutdown():
@@ -25,8 +25,8 @@ def turn():
 	for i in range(0, 200*8):
 		GPIO.output(step_pin, 0)
 		GPIO.output(step_pin, 1)
-		time.sleep(0.005)
+		time.sleep(0.02)
  
 while True:
-  turn()
-  time.sleep(3)
+	turn()
+	time.sleep(3)
