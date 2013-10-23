@@ -5,17 +5,20 @@ import time
 import subprocess as sp
 import random
 import RPi.GPIO as GPIO
+
 GPIO.setmode(GPIO.BCM)
 
-#GPIO.setup(enable_pin, GPIO.OUT)
+down_pin = 18
 dir_pin = 23
 step_pin = 24
 #enable_pin = 25
 
+GPIO.setup(down_pin, GPIO.IN)
+#GPIO.setup(enable_pin, GPIO.OUT)
 GPIO.setup(dir_pin, GPIO.OUT)
 GPIO.setup(step_pin, GPIO.OUT)
 
-GPIO.output(enable_pin, 1)
+#GPIO.output(enable_pin, 1)
 GPIO.output(dir_pin, 0)
 
 def spin(t):
@@ -39,3 +42,6 @@ while True:
 
     l = random.randint(3, 7)
 	time.sleep(l);
+
+	if ( GPIO.input(23) == False ):
+		turndown()
